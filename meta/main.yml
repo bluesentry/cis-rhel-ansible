@@ -45,7 +45,7 @@ galaxy_info:
   #  - 13.1
   #  - 13.2
   - name: Amazon
-  #  versions:
+    versions:
     - all
   #  - 2013.03
   #  - 2013.09
