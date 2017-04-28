@@ -23,6 +23,7 @@
       - section1.1.1
 
   - name: 1.1.2 - 1.1.4 Set nodev,nosuid,noexec option for /tmp Partition (Scored)
+    strategy: debug
     mount: >
       name="/tmp"
       src={{ item.device }}
