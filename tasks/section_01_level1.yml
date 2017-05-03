@@ -14,8 +14,8 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #
-  - debug: msg={{ item.mount }}
-    with_items: ansible_mounts
+  - debug: msg="'{{ item.mount }}'"
+    with_items:  '{{ ansible_mounts }}'
 
   - name: 1.1.1 Create Separate Partition for /tmp (Scored)
     debug: msg="*** Manually create Separate Partition for /tmp."
@@ -24,15 +24,15 @@
       - section1.1
       - section1.1.1
 
-  - name: 1.1.2 1.1.4 Set nodev nosuid noexec option for slash tmp Partition Scored
+  - name: 1.1.2 1.1.4 Set options for tmp 
     mount: >
       name="/tmp"
       src={{ item.device }}
       state=mounted
       fstype={{ item.fstype }}
       opts="nodev,nosuid,noexec"
-    when: item.mount == "/tmp"
-    with_items: ansible_mounts
+    when:  item.mount  == "/tmp"
+    with_items: '{{ ansible_mounts }}'
     tags:
       - scored
       - section1.1
@@ -55,7 +55,7 @@
       fstype="none"
       opts="bind"
     when: item.mount == "/tmp"
-    with_items: ansible_mounts
+    with_items:  '{{ ansible_mounts }}'
     tags:
       - scored
       - section1.1
@@ -90,7 +90,7 @@
       fstype={{ item.fstype }}
       opts="nodev"
     when: item.mount == "/home"
-    with_items: ansible_mounts
+    with_items:  '{{ ansible_mounts }}'
     tags:
       - scored
       - section1.1
